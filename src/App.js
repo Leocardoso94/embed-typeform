@@ -5,7 +5,7 @@ import axios from 'axios';
 class App extends Component {
   render() {
     return (
-      <div className="App">        
+      <div className="App">
         <Respostas />
       </div>
     );
@@ -23,13 +23,14 @@ class Respostas extends Component {
 
     this.callApi(url);
 
-
+    
   }
 
   callApi(url) {
     const vm = this;
 
-    axios.get(url)
+    setInterval(() => {
+      axios.get(url)
       .then(function (response) {
 
         vm.getResponse(response.data.responses);
@@ -38,24 +39,26 @@ class Respostas extends Component {
       .catch(function (error) {
         console.log(error);
       });
+
+    }, 2000);
+    
   }
 
   getResponse(responses = []) {
     const completedResponses = responses.filter(response => response.completed === '1');
 
-    console.log(completedResponses);
     this.setState({ responses: completedResponses })
   }
+
+
 
   renderResponses() {
     return this.state.responses.map(response => {
       const answers = response.answers;
 
-      console.log(answers)
-
       return (
-        <div>
-          <hr/>
+        <div key={response.token}>
+          <hr />
           <p>Firstname: {answers.textfield_B3KGXLywn5IE}</p>
           <p>Lastname:  {answers.textfield_B3KGXLywn5IE}</p>
           <p>Country:   {answers.dropdown_mR4kddSYTmbE}</p>
