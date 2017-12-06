@@ -56,11 +56,13 @@ class Respostas extends Component {
     return this.state.responses.map(response => {
       const answers = response.answers;
 
+      console.log(answers);
+
       return (
         <div key={response.token}>
           <hr />
           <p>Firstname: {answers.textfield_B3KGXLywn5IE}</p>
-          <p>Lastname:  {answers.textfield_B3KGXLywn5IE}</p>
+          <p>Lastname:  {answers.textfield_u9WUCgOJDk1J}</p>
           <p>Country:   {answers.dropdown_mR4kddSYTmbE}</p>
           <p>Email:     {answers.email_uyoj6Xan5W1W}</p>
         </div>
